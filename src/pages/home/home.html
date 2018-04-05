@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Playlist</h3>
-  <button ion-button secondary>Clear</button>
+  <h3>Search for a station</h3>
+  <!-- <button ion-button secondary>Clear</button> -->
 
   <ion-list>
-    <audio-track #audio *ngFor="let track of myTracks"  [track]="track" (onFinish)="onTrackFinished($event)">
+    <!-- <audio-track #audio *ngFor="let track of myTracks"  [track]="track" (onFinish)="onTrackFinished($event)">
       <ion-item>  
         <ion-thumbnail item-left>
           <img src="{{audio.art}}">
@@ -23,7 +23,24 @@
           <audio-track-progress-bar dark duration progress [audioTrack]="audio" [ngStyle]="{visibility: audio.completed > 0 ? 'visible' : 'hidden'}"></audio-track-progress-bar>
         </div>
       </ion-item>    
-    </audio-track>
+    </audio-track> -->
   </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <audio-track #audio *ngFor="let track of myTracks"  [track]="track" (onFinish)="onTrackFinished($event)">
+      <ion-item>  
+        <ion-thumbnail item-left>
+          <!-- <img src="{{audio.art}}"> -->
+          <audio-track-play [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>  
+        </ion-thumbnail>
+        <div item-content style="width:100%">
+          <p><strong>{{audio.title}}</strong> ⚬ <em>{{audio.artist}}</em></p>
+          <audio-track-progress-bar dark progress [audioTrack]="audio" [ngStyle]="{visibility: 'visible'}"></audio-track-progress-bar>
+        </div>
+      </ion-item>    
+    </audio-track>
+  </ion-toolbar>
+</ion-footer>
